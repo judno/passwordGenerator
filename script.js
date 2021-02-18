@@ -109,4 +109,6 @@ function generatePassword(
 
     result += randomChar;
   }
+
+  return result;
 }
