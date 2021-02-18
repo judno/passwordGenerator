@@ -5,13 +5,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   $("#lengthModal").modal("show");
   alertMessage.style.display = "none";
-
-  //   var password = generatePassword();
-  //   var passwordText = document.querySelector("#password");
-  //   passwordText.value = password;
 }
-//
-
 var lengthNextButton = document.querySelector("#lengthNextButton");
 
 function handleClick() {
@@ -23,17 +17,19 @@ function handleClick() {
   var specialInput = document.querySelector("#specialCheckbox").checked;
   var alertMessage = document.querySelector("#alertMessage");
 
+  // condition to display alert if user doesnt select a character2
+
   if (!numericInput && !upperInput && !lowerInput && !specialInput) {
     alertMessage.style.display = "block";
 
     return;
   }
 
-  //returns valid numbers from string
+  //returns valid numbers from min/max input
   var minNumber = parseInt(minInput, 10);
 
   var maxNumber = parseInt(maxInput, 10);
-
+  // displays alert message and keep modal displayed if the min/max critera is not met
   if (!minNumber || !maxNumber) {
     alertMessage.style.display = "block";
 
@@ -49,7 +45,7 @@ function handleClick() {
     return;
   }
 
-  // function to
+  // add value to variable password based on chars specified
   var securePassword = generatePassword(
     minNumber,
     maxNumber,
@@ -63,9 +59,8 @@ function handleClick() {
   passwordText.value = securePassword;
 
   $("#lengthModal").modal("hide");
-  console.log(securePassword);
 }
-// add event listener to
+// add event listener to next button
 lengthNextButton.addEventListener("click", handleClick);
 
 // Add event listener to generate button
@@ -81,7 +76,7 @@ let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let special = "!@#$%^&*()_+|~`;'][";
 let numeric = "1234567890";
 
-// make a function that generates a random password
+// make a function that generates a random password based on specific requirements of user
 function generatePassword(
   min,
   max,
@@ -105,7 +100,7 @@ function generatePassword(
     allowedChars += special;
   }
 
-  //password length
+  //creates a password length
   let passwordLength = getRandomInt(max - min) + min;
   let result = "";
   for (let i = 0; i < passwordLength; i++) {
@@ -114,6 +109,4 @@ function generatePassword(
 
     result += randomChar;
   }
-  console.log(passwordLength);
-  return result;
 }
